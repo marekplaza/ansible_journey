@@ -50,6 +50,13 @@
  docker run -it --rm ansible_journey
  ```
  
+ To gain access to your configuration and playbook localized on host mount your host workdir as container workdir, and then run docker:
+
+```bash
+ docker run -it --rm -v $(pwd):/ansible ansible_journey [CMD]
+```
+
+
  #### Executing Playbooks
  
  - **Change Hostname:**
