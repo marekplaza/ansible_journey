@@ -1,0 +1,6 @@
+hostname: CLIENT-2
+vlans:
+  - id: 30
+    name: "Admin_VLAN"
+  - id: 40
+    name: "IoT_VLAN"

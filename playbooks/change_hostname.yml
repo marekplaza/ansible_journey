@@ -1,0 +1,21 @@
+---
+- name: Change Hostname
+  hosts: arista
+  gather_facts: no
+  tasks:
+    - name: Get Current Hostname
+      arista.eos.eos_command:
+        commands: "show running-config | include hostname"
+      register: show_hostname
+
+    - name: Set Fact for Original Hostname
+      set_fact:
+        original_hostname: "{{ show_hostname.stdout_lines[0].split()[1] }}"
+      when: show_hostname.stdout_lines[0] is search('hostname')
+
+    - name: Change Hostname
+      arista.eos.eos_config:
+        lines:
+          - hostname {{ new_hostname }}
+      vars:
+        new_hostname: "NewHostname"

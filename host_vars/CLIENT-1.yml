@@ -1,0 +1,6 @@
+hostname: CLIENT-1
+vlans:
+  - id: 10
+    name: "User_VLAN"
+  - id: 20
+    name: "Guest_VLAN"

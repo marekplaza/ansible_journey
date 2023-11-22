@@ -1,0 +1,25 @@
+---
+- name: Revert Changes
+  hosts: arista
+  gather_facts: no
+  tasks:
+    - name: Revert Hostname Change
+      arista.eos.eos_config:
+        lines:
+          - hostname {{ original_hostname }}
+      when: revert_hostname is defined and revert_hostname
+      vars:
+        original_hostname: "{{ hostvars['localhost'].original_hostname }}"
+        revert_hostname: true
+
+    - name: Remove VLANs
+      arista.eos.eos_config:
+        lines:
+          - no vlan {{ item.id }}
+      with_items: "{{ vlans_to_remove }}"
+      when: revert_vlans is defined and revert_vlans
+      vars:
+        vlans_to_remove:
+          - { id: 10 }
+          - { id: 20 }
+        revert_vlans: false

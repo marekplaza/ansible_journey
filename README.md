@@ -56,6 +56,13 @@
  docker run -it --rm -v $(pwd):/ansible ansible_journey [CMD]
 ```
 
+For example you can check if everthinig has been installed properly:
+```bash
+sudo docker run -it --rm -v $(pwd):/ansible ansible_journey ansible-galaxy collection list |grep arista
+arista.cvp                    3.8.0  ✅
+arista.eos                    6.2.1  ✅
+```
+
 
  #### Executing Playbooks
  

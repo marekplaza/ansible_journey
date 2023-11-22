@@ -1,0 +1,9 @@
+[arista]
+CLIENT-1 ansible_host=172.100.1.1
+CLIENT-2 ansible_host=172.100.1.2
+
+[arista:vars]
+ansible_user=admin
+ansible_password=admin
+ansible_network_os=eos
+ansible_connection=network_cli
