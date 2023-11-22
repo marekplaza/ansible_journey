@@ -28,7 +28,17 @@
     docker build -t ansible_journey -f ansible_journey.docker .
     ```
  
-    This command builds a Docker image named `ansible_journey` based on the `ansible_journey.docker` file in the repository, which includes Ansible and the necessary Arista collections.
+    This command builds a Docker image named `ansible_journey` based on the `ansible_journey.docker` file in the repository, which includes Ansible and the necessary Arista collections:
+
+    ```bash
+    FROM python:3.9-slim
+    RUN pip install ansible
+    # Install Arista EOS collection
+    RUN ansible-galaxy collection install arista.eos
+    RUN ansible-galaxy collection install arista.cvp
+    WORKDIR /ansible
+    CMD [ "ansible-playbook", "--version" ]
+    ```
  
  ### Usage
  
