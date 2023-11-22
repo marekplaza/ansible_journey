@@ -1,4 +1,8 @@
- # ansible_journey
+
+ ![apiuslab](https://marekplaza.github.io/apiuslab/apiuslab.png)
+
+
+ # Welcome to ApiusLAB - ansible_journey project
  
  ## Project Overview
  
