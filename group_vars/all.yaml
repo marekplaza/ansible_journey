@@ -7,8 +7,6 @@ ansible_become_method: enable
 #
 ansible_user: admin
 ansible_ssh_pass: admin
-shell_username: admin
-shell_password: admin
 
 # Arista specific variables
 eos_users:
