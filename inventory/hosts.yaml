@@ -1,5 +1,12 @@
 ---
 all:
+  vars: 
+    ansible_connection: network_cli
+    ansible_network_os: eos
+    ansible_become: yes
+    ansible_become_method: enable
+    ansible_user: admin
+    ansible_ssh_pass: admin
   children:
     DC1:
       children:
@@ -28,4 +35,9 @@ CVP:
     cvp.apius.lan:
       ansible_user: cvpadmin
       ansible_password: Apiuslab.123!  
+SINGLE:
+  hosts:
+    CLIENT-1:
+      ansible_user: marek
+      ansible_ssh_pass: 12apius3
 
