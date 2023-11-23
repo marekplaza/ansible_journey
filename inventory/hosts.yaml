@@ -1,0 +1,27 @@
+---
+all:
+  children:
+    DC1:
+      children:
+        DC1_FABRIC:
+          children:
+            DC1_SPINES:
+              hosts:
+                SPINE-1:
+                SPINE-2:
+            DC1_LEAFS:
+              hosts:
+                LEAF-1:
+                LEAF-2:
+                LEAF-3:
+                LEAF-4:
+            DC1_CLIENTS:
+              hosts:
+                CLIENT-1:
+                CLIENT-2:
+CVP:
+  hosts:
+    cvp.apius.lan:
+      ansible_user: cvpadmin
+      ansible_password: Apiuslab.123!  
+
