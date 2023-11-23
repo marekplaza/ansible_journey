@@ -19,6 +19,10 @@ all:
               hosts:
                 CLIENT-1:
                 CLIENT-2:
+eos_demo_group:
+  hosts:
+    CLIENT-1:
+    CLIENT-2:
 CVP:
   hosts:
     cvp.apius.lan:

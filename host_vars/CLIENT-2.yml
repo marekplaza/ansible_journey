@@ -1,3 +1,4 @@
+---
 hostname: CLIENT-2
 vlans:
   - id: 30
