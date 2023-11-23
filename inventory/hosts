@@ -1,9 +1,27 @@
-[arista]
-CLIENT-1 ansible_host=172.100.1.1
-CLIENT-2 ansible_host=172.100.1.2
+---
+all:
+  children:
+    DC1:
+      children:
+        DC1_FABRIC:
+          children:
+            DC1_SPINES:
+              hosts:
+                SPINE-1:
+                SPINE-2:
+            DC1_LEAFS:
+              hosts:
+                LEAF-1:
+                LEAF-2:
+                LEAF-3:
+                LEAF-4:
+            DC1_CLIENTS:
+              hosts:
+                CLIENT-1:
+                CLIENT-2:
+CVP:
+  hosts:
+    cvp.apius.lan:
+      ansible_user: cvpadmin
+      ansible_password: Apiuslab.123!  
 
-[arista:vars]
-ansible_user=admin
-ansible_password=admin
-ansible_network_os=eos
-ansible_connection=network_cli
