@@ -1,0 +1,31 @@
+---
+# global because
+ansible_connection: network_cli
+ansible_network_os: eos
+ansible_become: yes
+ansible_become_method: enable
+#
+ansible_user: admin
+ansible_ssh_pass: admin
+shell_username: admin
+shell_password: admin
+
+# Arista specific variables
+eos_users:
+  - name: user1
+    encryption: md5
+    secret: '$1$J0auuPhz$Pkr5NnHssW.Jqlk17Ylpk0'
+    privilege: 15
+    role: network-admin
+  - name: user2
+    nopassword: true
+    privilege: 0
+    role: network-operator
+
+dns_servers:
+  - 1.1.1.1
+  - 2.2.2.2
+  - 10.138.165.2
+
+motd_banner: | 
+    Welcome to ApiusLAB Managed by Ansible
