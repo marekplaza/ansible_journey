@@ -1,0 +1,17 @@
+---
+  - hosts: LEAF-1, LEAF-2
+    gather_facts: no
+    tasks:
+    - name: Remove VLANs
+      arista.eos.eos_config:
+        lines:
+          - no vlan {{ item.id }}
+      with_items: "{{ vlans_to_remove }}"
+      vars:
+        vlans_to_remove:
+          - { id: "10-50" }
+          - { id: "100-333" }
+          - { id: 4000 }
+          - { id: 4001 }
+          - { id: 4002 }
+        revert_vlans: false
