@@ -1,9 +1,10 @@
 ---
 - name: Set MOTD on Arista Switch
-  hosts: arista
+  hosts: LEAFS
   gather_facts: no
   tasks:
-    - name: Update MOTD
-      arista.eos.eos_config:
-        lines:
-          - banner motd {{ motd_banner | quote }}
+  - name: Update MOTD
+    arista.eos.eos_banner:
+      banner: login
+      text: "{{ motd_banner }}"
+      state: present

@@ -26,4 +26,10 @@ dns_servers:
   - 10.138.165.2
 
 motd_banner: | 
-    Welcome to ApiusLAB Managed by Ansible
+    Welcome to ApiusLAB Managed by Ansible333
+
+vlans:
+  - id: 111
+    name: "VLAN_111"
+  - id: 222
+    name: "VLAN_222"
