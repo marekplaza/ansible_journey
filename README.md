@@ -73,9 +73,9 @@ arista.eos                    6.2.1  ✅
 
  #### Demo Lab Network
 
- To start, please prepare at least two network devices, they could be prepared by using [https://containerlab.dev/](https://containerlab.dev/). 
-  - Name it SWITCH-1 and SWITCH-2. 
-  - Adopt your inventory.yml file by changing IP addresses, as well as username and password  acourdingly:
+ To begint, please prepare at least two network devices. These could be set up using [https://containerlab.dev/](https://containerlab.dev/). Follow therse steps:
+  - Name the devices SWITCH-1 and SWITCH-2. 
+  - Adopt your `inventory.yml` file by changing the IP addresses, as well as username and password acourdingly, My starting configuration is as follows:
 
  ```bash
 ---
@@ -102,17 +102,17 @@ all:
  
  - **Change Hostname:**
    ```bash
-   docker run -it --rm -v $(pwd):/ansible ansible_journey ansible-playbook change_hostname.yml
+   docker run -it --rm -v $(pwd):/ansible ansible_journey ansible-playbook change_hostname.yml -i inventory.yml
    ```
  
  - **Add VLANs:**
    ```bash
-   docker run -it --rm -v $(pwd):/ansible ansible_journey ansible-playbook add_vlans.yml
+   docker run -it --rm -v $(pwd):/ansible ansible_journey ansible-playbook add_vlans.yml -i inventory.yml
    ```
  
  - **Revert Changes:**
    ```bash
-   docker run -it --rm -v $(pwd):/ansible ansible_journey ansible-playbook revert_changes.yml
+   docker run -it --rm -v $(pwd):/ansible ansible_journey ansible-playbook revert_changes.yml -i inventory.yml
    ```
  
  ## Project Structure
