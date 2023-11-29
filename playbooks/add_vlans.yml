@@ -1,5 +1,5 @@
 ---
-  - hosts: LEAF-1, LEAF-2
+  - hosts: SWITCH-1, SWITCH-2
     gather_facts: no
     tasks:
     - name: Add VLANs

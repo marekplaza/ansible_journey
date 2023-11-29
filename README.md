@@ -73,7 +73,10 @@ arista.eos                    6.2.1  ✅
 
  #### Demo Lab Network
 
- To begint, please prepare at least two network devices. These could be set up using [https://containerlab.dev/](https://containerlab.dev/). Follow therse steps:
+ To begin, please prepare at least two network devices. These could be set up using [https://containerlab.dev/](https://containerlab.dev/) tool.
+ Guide how to set up certain DEMO enviroment, you will find in `containerlab_DEMO`` folder: [contaiberlab_DEMO](contaiberlab_DEMO)
+ 
+ Follow these steps:
   - Name the devices SWITCH-1 and SWITCH-2. 
   - Adopt your `inventory.yml` file by changing the IP addresses, as well as username and password acourdingly, My starting configuration is as follows:
 
@@ -91,28 +94,28 @@ all:
     SWITCHES:
     hosts:
       SWITCH-1:
-        ansible_host: 192.168.123.111
+        ansible_host: 172.1.1.1
       SWITCH-2:
-        ansible_host: 192.168.123.112
+        ansible_host: 172.1.1.2
  ```
 
 
 
  #### Executing Playbooks
  
- - **Change Hostname:**
+ - **Set MOTD:**
    ```bash
-   docker run -it --rm -v $(pwd):/ansible ansible_journey ansible-playbook change_hostname.yml -i inventory.yml
+   docker run -it --rm --network host -v /etc/hosts:/etc/hosts -v $(pwd):/ansible ansible_journey ansible-playbook ./playbooks/set_motd.yml -i inventory.yml
    ```
  
  - **Add VLANs:**
    ```bash
-   docker run -it --rm -v $(pwd):/ansible ansible_journey ansible-playbook add_vlans.yml -i inventory.yml
+   docker run -it --rm --network host -v /etc/hosts:/etc/hosts -v $(pwd):/ansible ansible_journey ansible-playbook ./playbooks/add_vlans.yml -i inventory.yml
    ```
  
  - **Revert Changes:**
    ```bash
-   docker run -it --rm -v $(pwd):/ansible ansible_journey ansible-playbook revert_changes.yml -i inventory.yml
+   docker run -it --rm --network host -v /etc/hosts:/etc/hosts -v $(pwd):/ansible ansible_journey ansible-playbook ./playbooks/revert_changes.yml -i inventory.yml
    ```
  
  ## Project Structure

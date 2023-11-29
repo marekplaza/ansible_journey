@@ -9,8 +9,8 @@ all:
     ansible_ssh_pass: admin
   children:
     SWITCHES:
-    hosts:
-      SWITCH-1:
-        ansible_host: 192.168.123.111
-      SWITCH-2:
-        ansible_host: 192.168.123.112
+      hosts:
+        SWITCH-1:
+          ansible_host: 172.1.1.1
+        SWITCH-2:
+          ansible_host: 172.1.1.2
