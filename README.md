@@ -73,10 +73,27 @@ arista.eos                    6.2.1  ✅
 
  #### Demo Lab Network
 
- To start, please prepare at least two network devices, they could be prepared at containerlab  [https://containerlab.dev/](https://containerlab.dev/). Name it SWITCH-1 and SWITCH-2. Adopt your inventory.yml file by changing IP addresses acourdingly, as well username and password:
+ To start, please prepare at least two network devices, they could be prepared by using [https://containerlab.dev/](https://containerlab.dev/). 
+  - Name it SWITCH-1 and SWITCH-2. 
+  - Adopt your inventory.yml file by changing IP addresses, as well as username and password  acourdingly:
 
  ```bash
-
+---
+all:
+  vars: 
+    ansible_connection: network_cli
+    ansible_network_os: eos
+    ansible_become: yes
+    ansible_become_method: enable
+    ansible_user: admin
+    ansible_ssh_pass: admin
+  children:
+    SWITCHES:
+    hosts:
+      SWITCH-1:
+        ansible_host: 192.168.123.111
+      SWITCH-2:
+        ansible_host: 192.168.123.112
  ```
 
 
