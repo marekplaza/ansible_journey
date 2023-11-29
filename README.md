@@ -25,6 +25,7 @@
  
  2. **Build the Docker Image:**
     ```bash
+    cd docker
     docker build -t ansible_journey -f ansible_journey.docker .
     ```
  
@@ -63,7 +64,12 @@ arista.cvp                    3.8.0  ✅
 arista.eos                    6.2.1  ✅
 ```
 
+ #### Demo Lab Network
 
+ To start, please prepare at least two network devices, they could be prepared at containerlab  [https://containerlab.dev/](https://containerlab.dev/). Name it SWITCH-1 and SWITCH-2. Adopt your inventory.yml file by changing IP addresses acourdingly, as well username and password:
+
+
+ 
  #### Executing Playbooks
  
  - **Change Hostname:**
