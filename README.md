@@ -68,8 +68,12 @@ arista.eos                    6.2.1  ✅
 
  To start, please prepare at least two network devices, they could be prepared at containerlab  [https://containerlab.dev/](https://containerlab.dev/). Name it SWITCH-1 and SWITCH-2. Adopt your inventory.yml file by changing IP addresses acourdingly, as well username and password:
 
-
+ ```bash
  
+ ```
+
+
+
  #### Executing Playbooks
  
  - **Change Hostname:**
