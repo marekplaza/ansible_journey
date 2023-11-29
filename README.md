@@ -32,12 +32,19 @@
     This command builds a Docker image named `ansible_journey` based on the `ansible_journey.docker` file in the repository, which includes Ansible and the necessary Arista collections:
 
     ```bash
+    # Use an official Python runtime as a parent image
     FROM python:3.9-slim
-    RUN pip install ansible
-    # Install Arista EOS collection
-    RUN ansible-galaxy collection install arista.eos
-    RUN ansible-galaxy collection install arista.cvp
+    # Set the working directory in the container
     WORKDIR /ansible
+    # Install Ansible and necessary libraries
+    RUN pip install ansible pyyaml requests paramiko jsonschema ansible-pylibssh
+    # Install Arista collections
+    RUN ansible-galaxy collection install arista.eos arista.cvp
+    # Install SSH clients
+    RUN apt-get update && apt-get install -y ssh-client sshpass
+    # Optional tools
+    RUN apt-get install -y git
+    # Command to run when starting the container
     CMD [ "ansible-playbook", "--version" ]
     ```
  
@@ -69,7 +76,7 @@ arista.eos                    6.2.1  ✅
  To start, please prepare at least two network devices, they could be prepared at containerlab  [https://containerlab.dev/](https://containerlab.dev/). Name it SWITCH-1 and SWITCH-2. Adopt your inventory.yml file by changing IP addresses acourdingly, as well username and password:
 
  ```bash
- 
+
  ```
 
 
