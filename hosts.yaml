@@ -8,36 +8,9 @@ all:
     ansible_user: admin
     ansible_ssh_pass: admin
   children:
-    DC1:
-      children:
-        DC1_FABRIC:
-          children:
-            DC1_SPINES:
-              hosts:
-                SPINE-1:
-                SPINE-2:
-            DC1_LEAFS:
-              hosts:
-                LEAF-1:
-                LEAF-2:
-                LEAF-3:
-                LEAF-4:
-            DC1_CLIENTS:
-              hosts:
-                CLIENT-1:
-                CLIENT-2:
-LEAFS:
-  hosts:
-    LEAF-1:
-    LEAF-2:
-CVP:
-  hosts:
-    cvp.apius.lan:
-      ansible_user: cvpadmin
-      ansible_password: Apiuslab.123!  
-SINGLE:
-  hosts:
-    CLIENT-1:
-      ansible_user: marek
-      ansible_ssh_pass: 12apius3
-
+    SWITCHES:
+    hosts:
+      SWITCH-1:
+        ansible_host: 192.168.123.111
+      SWITCH-2:
+        ansible_host: 192.168.123.112

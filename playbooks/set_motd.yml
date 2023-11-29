@@ -1,6 +1,6 @@
 ---
 - name: Set MOTD on Arista Switch
-  hosts: LEAFS
+  hosts: SWITCH-1
   gather_facts: no
   tasks:
   - name: Update MOTD
