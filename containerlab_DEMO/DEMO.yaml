@@ -1,0 +1,23 @@
+name: DEMO
+prefix: ""
+mgmt:
+  network: DEMO
+  ipv4-subnet: 172.1.1.0/24
+  ipv4-gw: 172.1.1.254
+  external-access: true
+topology:
+  kinds:
+    ceos:
+      image: ceos64:4.30.4M
+      startup-config: baseline.cfg
+  nodes:
+    SWITCH-1:
+      kind: ceos
+      mgmt-ipv4: 172.1.1.1
+    SWITCH-2:
+      kind: ceos
+      mgmt-ipv4: 172.1.1.2
+  links:      
+  - endpoints:
+    - SWITCH-1:eth1
+    - SWITCH-2:eth1

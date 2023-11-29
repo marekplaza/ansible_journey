@@ -1,0 +1,67 @@
+! Startup-config last modified at Wed Nov 29 15:47:20 2023 by root
+! device: SWITCH-1 (cEOSLab, EOS-4.30.4M-34191138.4304M (engineering build))
+!
+no aaa root
+!
+username admin privilege 15 role network-admin secret sha512 $6$7Uq65XtJ6Gw.jkIw$vq1cDgr7kImUZIYh3u3gVds2i9wyhQhP7EAY0ipuQKHjaPdCweb8SeOlsjtpEhoOjO6RD8CUDEJzjjQ35zouI.
+username cvpadmin privilege 15 role network-admin secret sha512 $6$e9/NIBJeEsPdFplD$BJz7NfV71SduaSVdDLNfqBYT.ZDS.CEKt4E4Phol9hCW85PHOsP9iakPPNciU3w0wh9M3Bq8VN9y0rFRaGRJN0
+!
+transceiver qsfp default-mode 4x10G
+!
+service routing protocols model multi-agent
+!
+hostname SWITCH-1
+ip name-server vrf mgmt 10.138.165.2
+!
+spanning-tree mode mstp
+!
+system l1
+   unsupported speed action error
+   unsupported error-correction action error
+!
+vrf instance mgmt
+!
+management api http-commands
+   protocol http
+   protocol unix-socket
+   no shutdown
+   !
+   vrf mgmt
+      no shutdown
+!
+management api gnmi
+   transport grpc default
+      vrf mgmt
+!
+management api netconf
+   transport ssh default
+      vrf mgmt
+!
+interface Ethernet1
+!
+interface Ethernet2
+!
+interface Ethernet3
+!
+interface Ethernet4
+!
+interface Ethernet5
+!
+interface Ethernet6
+!
+interface Ethernet7
+!
+interface Ethernet8
+!
+interface Management0
+   vrf mgmt
+   ip address 172.1.1.1/24
+!
+ip routing
+ip routing vrf mgmt
+!
+ip route vrf mgmt 0.0.0.0/0 172.1.1.254
+!
+ntp server vrf mgmt tempus1.gum.gov.pl iburst
+!
+end
