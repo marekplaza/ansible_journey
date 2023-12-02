@@ -173,7 +173,7 @@ Run 'containerlab version upgrade' to upgrade or go check other installation opt
 +---+----------+--------------+----------------+------+---------+--------------+--------------+
 ```
 
-- ### Clenup your lab
+- ### Clean up your lab
 
 Finally, after deailing with ansible journey excersize, you can easly switch off your network lab by issuing command as follows (destroy):
 
@@ -188,6 +188,9 @@ docker run --rm -it --privileged \
     -v $(pwd):$(pwd) \
     -w $(pwd) \
     ghcr.io/srl-labs/clab containerlab destroy -t DEMO.yml --cleanup
+```
+Result should looks like:
+```bash    
 INFO[0000] Parsing & checking topology file: DEMO.yml   
 INFO[0000] Destroying lab: DEMO                         
 INFO[0002] Removed container: SWITCH-1                  
