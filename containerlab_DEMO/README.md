@@ -172,3 +172,26 @@ Run 'containerlab version upgrade' to upgrade or go check other installation opt
 | 2 | SWITCH-2 | 11dc5353abec | ceos64:4.30.4M | ceos | running | 172.1.1.2/24 | N/A          |
 +---+----------+--------------+----------------+------+---------+--------------+--------------+
 ```
+
+- ### Clenup your lab
+
+Finally, after deailing with ansible journey excersize, you can easly switch off your network lab by issuing command as follows (destroy):
+
+```bash
+docker run --rm -it --privileged \
+    --network host \
+    -v /var/run/docker.sock:/var/run/docker.sock \
+    -v /var/run/netns:/var/run/netns \
+    -v /etc/hosts:/etc/hosts \
+    -v /var/lib/docker/containers:/var/lib/docker/containers \
+    --pid="host" \
+    -v $(pwd):$(pwd) \
+    -w $(pwd) \
+    ghcr.io/srl-labs/clab containerlab destroy -t DEMO.yml --cleanup
+INFO[0000] Parsing & checking topology file: DEMO.yml   
+INFO[0000] Destroying lab: DEMO                         
+INFO[0002] Removed container: SWITCH-1                  
+INFO[0002] Removed container: SWITCH-2                  
+INFO[0002] Removing containerlab host entries from /etc/hosts file 
+INFO[0002] Removing ssh config for containerlab nodes   
+```
