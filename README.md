@@ -83,7 +83,7 @@ arista.eos                    6.2.1  ✅
  - `add_vlans.yml`: Ansible playbook to add VLANs to an Arista switch.
  - `revert_changes.yml`: Ansible playbook to revert changes made by the other playbooks.
  
- ## Playbook
+ ## Playbooks
  
  1. **Setting a Hostname**
     The `change_hostname.yml` playbook sets a new hostname on the Arista switch. It first retrieves the current hostname and stores it for potential reversion.
@@ -109,17 +109,9 @@ arista.eos                    6.2.1  ✅
    docker run -it --rm --network host -v /etc/hosts:/etc/hosts -v $(pwd):/ansible ansible_journey ansible-playbook ./playbooks/revert_changes.yml -i inventory.yml
    ```
  
-## Contributing
+ #### Sample Executions
  
- Contributions to `ansible_journey` are welcome. Please ensure that your contributions adhere to best practices and include appropriate documentation and tests.
-
- #Project Link: [https://github.com/marekplaza/ansible_journey](https://github.com/marekplaza/ansible_journey)
-
-
-
- #### Sample Playbooks
- 
- **Set MOTD:** First one playbook is designed to set up Welcome banner
+In this scenario 
 
    **Playbook: set_motd.yml**
    ```bash
@@ -134,7 +126,7 @@ arista.eos                    6.2.1  ✅
           text: "{{ motd_banner }}"
           state: present
    ```
- - **Execution** 
+
 
    ```bash
    docker run -it --rm --network host -v /etc/hosts:/etc/hosts -v $(pwd):/ansible ansible_journey ansible-playbook ./playbooks/set_motd.yml -i inventory.yml
@@ -148,3 +140,8 @@ arista.eos                    6.2.1  ✅
    SWITCH-1                   : ok=1    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
    ```
 
+## Contributing
+ 
+ Contributions to `ansible_journey` are welcome. Please ensure that your contributions adhere to best practices and include appropriate documentation and tests.
+
+ #Project Link: [https://github.com/marekplaza/ansible_journey](https://github.com/marekplaza/ansible_journey)
