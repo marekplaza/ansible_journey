@@ -9,6 +9,15 @@
  `ansible_journey` is a project aimed at automating network configurations using Ansible within a Docker environment, specifically targeting Arista EOS switches. This project includes the creation of a Docker container with Ansible, installation of the Arista EOS galaxy collections, and execution of basic network configuration tasks such as setting hostnames and managing VLANs.
  
  ## Getting Started
+
+ ### Project Structure
+ 
+ - `docker/ansible_journey.docker`: Dockerfile that defines the Docker container with Ansible and Arista EOS galaxy collections.
+ - `contanerlab_DEMO`: Guide how to setup network part of this project - Demo, simple topology based on Arista cEOS images.
+ - `set_MOTD.yml`: Ansible playbook to set Message of the Day banner.
+ - `change_hostname.yml`: Ansible playbook to change the hostname on an Arista switch.
+ - `add_vlans.yml`: Ansible playbook to add VLANs to an Arista switch.
+ - `revert_changes.yml`: Ansible playbook to revert changes made by the other playbooks.
  
  ### Prerequisites
  
@@ -76,14 +85,7 @@ arista.eos                    6.2.1  ✅
  To begin, please prepare at least two network devices. These could be set up using [https://containerlab.dev/](https://containerlab.dev/) tool.
  Guide how to set up sample DEMO enviroment, you will find in folder: [containerlab_DEMO](containerlab_DEMO)
  
- ## Project Structure
- 
- - `docker/ansible_journey.docker`: Dockerfile that defines the Docker container with Ansible and Arista EOS galaxy collections.
- - `contanerlab_DEMO`: Guide how to setup network part of this project - Demo, simple topology based on Arista cEOS images.
- - `set_MOTD.yml`: Ansible playbook to set Message of the Day banner.
- - `change_hostname.yml`: Ansible playbook to change the hostname on an Arista switch.
- - `add_vlans.yml`: Ansible playbook to add VLANs to an Arista switch.
- - `revert_changes.yml`: Ansible playbook to revert changes made by the other playbooks.
+
  
  ## Playbooks
  
