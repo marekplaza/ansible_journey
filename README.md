@@ -78,7 +78,9 @@ arista.eos                    6.2.1  ✅
  
  ## Project Structure
  
- - `ansible_journey.docker`: Dockerfile that defines the Docker container with Ansible and Arista EOS galaxy collections.
+ - `docker/ansible_journey.docker`: Dockerfile that defines the Docker container with Ansible and Arista EOS galaxy collections.
+ - `contanerlab_DEMO`: Guide how to setup network part of this project - Demo, simple topology based on Arista cEOS images.
+ - `set_MOTD.yml`: Ansible playbook to set Message of the Day banner.
  - `change_hostname.yml`: Ansible playbook to change the hostname on an Arista switch.
  - `add_vlans.yml`: Ansible playbook to add VLANs to an Arista switch.
  - `revert_changes.yml`: Ansible playbook to revert changes made by the other playbooks.
