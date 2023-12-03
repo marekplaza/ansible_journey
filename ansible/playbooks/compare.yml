@@ -1,0 +1,10 @@
+---
+  - hosts: LEAF-1
+    gather_facts: no
+    tasks:
+    - name: Apply VLAN config with VLAN
+      eos_vlans:
+        vlan_id: "{{ item.number }}"
+        state: active
+      with_items:
+        - "{{ vlans }}"

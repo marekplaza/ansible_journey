@@ -1,0 +1,9 @@
+
+---
+- name: Get VLANs info
+  hosts: DC1
+  gather_facts: no
+  tasks:
+    - name: Gather vlans facts from the device
+      arista.eos.eos_vlans:
+        state: gathered

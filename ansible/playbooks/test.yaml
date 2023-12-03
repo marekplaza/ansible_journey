@@ -1,0 +1,10 @@
+---
+- hosts: DC1
+  gather_facts: no
+  tasks:
+    - name: Arista EOS Banner test
+      eos_banner:
+        banner: login
+        text: | 
+            ok, ogarniam Ansible!
+        state: present

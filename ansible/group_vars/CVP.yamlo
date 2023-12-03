@@ -1,0 +1,3 @@
+ansible_connection: https
+ansible_user: cvpadmin
+ansible_password: Apiuslab.123!  

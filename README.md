@@ -14,17 +14,17 @@
  
  - `docker/ansible_journey.docker`: Dockerfile that defines the Docker container with Ansible and Arista EOS galaxy collections.
  - `contanerlab_DEMO`: Guide how to setup network part of this project - Demo, simple topology based on Arista cEOS images.
- - `set_MOTD.yml`: Ansible playbook to set Message of the Day banner.
- - `change_hostname.yml`: Ansible playbook to change the hostname on an Arista switch.
- - `add_vlans.yml`: Ansible playbook to add VLANs to an Arista switch.
- - `revert_changes.yml`: Ansible playbook to revert changes made by the other playbooks.
+ - `playbooks/set_MOTD.yml`: Ansible playbook to set Message of the Day banner.
+ - `playbooks/change_hostname.yml`: Ansible playbook to change the hostname on an Arista switch.
+ - `playbooks/add_vlans.yml`: Ansible playbook to add VLANs to an Arista switch.
+ - `playbooks/revert_changes.yml`: Ansible playbook to revert changes made by the other playbooks.
  
  ### Prerequisites
  
  - Docker
  - Git (for cloning the repository)
  
- ### Installation
+ ## Installation
  
  1. **Clone the Repository:**
     ```bash
@@ -57,7 +57,7 @@
     CMD [ "ansible-playbook", "--version" ]
     ```
  
- ### Usage
+ ## Usage
  
  #### Running the Docker Container
  
@@ -113,7 +113,7 @@ arista.eos                    6.2.1  ✅
    docker run -it --rm --network host -v /etc/hosts:/etc/hosts -v $(pwd):/ansible ansible_journey ansible-playbook ./playbooks/revert_changes.yml -i inventory.yml
    ```
  
- #### Sample Executions
+ ### Sample Executions
  
 In this scenario we 
 

@@ -1,0 +1,7 @@
+vlans:
+  - id: 31
+    name: "Admin_VLAN_by host_vars"
+  - id: 41
+    name: "IoT_VLAN by host_vars"
+
+motd_banner: Welcome to ApiusLAB Managed by Ansible - by host_vars

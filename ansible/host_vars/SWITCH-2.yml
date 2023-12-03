@@ -1,0 +1,3 @@
+vlans:
+  - id: 32
+    name: "HR_VLAN by host_vars"
