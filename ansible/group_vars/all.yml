@@ -30,6 +30,6 @@ motd_banner: |
 
 vlans:
   - id: 10
-    name: "VLAN_10 by group_vars"
+    name: "VLAN10__by_group_vars"
   - id: 20
-    name: "VLAN_20 by group_vars"
+    name: "VLAN20__by_group_vars"

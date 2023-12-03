@@ -1,7 +1,7 @@
 
 ---
 - name: Get VLANs info
-  hosts: DC1
+  hosts: SWITCHES
   gather_facts: no
   tasks:
     - name: Gather vlans facts from the device

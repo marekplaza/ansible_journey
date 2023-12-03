@@ -1,5 +1,5 @@
 ---
-  - hosts: SWITCH-1, SWITCH-2
+  - hosts: SWITCH-1
     gather_facts: no
     tasks:
     - name: Add VLANs
@@ -10,4 +10,5 @@
         state: merged
       with_items: 
         - "{{ vlans }}"
+
 
