@@ -74,7 +74,7 @@ arista.eos                    6.2.1  ✅
  #### Running the Demo Lab Network
 
  To begin, please prepare at least two network devices. These could be set up using [https://containerlab.dev/](https://containerlab.dev/) tool.
- Guide how to set up certain DEMO enviroment, you will find in folder: [containerlab_DEMO](containerlab_DEMO)
+ Guide how to set up sample DEMO enviroment, you will find in folder: [containerlab_DEMO](containerlab_DEMO)
  
  ## Project Structure
  
@@ -147,3 +147,4 @@ In this scenario we
  Contributions to `ansible_journey` are welcome. Please ensure that your contributions adhere to best practices and include appropriate documentation and tests.
 
  #### Project Link: [https://github.com/marekplaza/ansible_journey](https://github.com/marekplaza/ansible_journey)
+
