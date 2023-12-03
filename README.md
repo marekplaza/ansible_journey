@@ -14,9 +14,10 @@
  
  - `docker/ansible_journey.docker`: Dockerfile that defines the Docker container with Ansible and Arista EOS galaxy collections.
  - `contanerlab_DEMO`: Guide how to setup network part of this project - Demo, simple topology based on Arista cEOS images.
- - `ansible/group_vars`: Ansible group vars definitions.
- - `ansible/host_vars`: Ansible host specific vars.
-
+ - `ansible/ansible.cfg`: Ansible main configuration file
+ - `ansible/inventory.yml`: Ansible inventory, credential setup and hierarchy definition.
+ - `ansible/group_vars`: Ansible group vars definitions, common for all NE.
+ - `ansible/host_vars`: Ansible host specific vars for SWITCH-1 and SWITCH-2 independently.
  - `ansible/playbooks/set_MOTD.yml`: Ansible playbook to set Message of the Day banner.
  - `ansible/playbooks/change_hostname.yml`: Ansible playbook to change the hostname on an Arista switch.
  - `ansible/playbooks/add_vlans.yml`: Ansible playbook to add VLANs to an Arista switch.
