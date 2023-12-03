@@ -71,43 +71,34 @@ arista.cvp                    3.8.0  ✅
 arista.eos                    6.2.1  ✅
 ```
 
- #### Demo Lab Network
+ #### Running the Demo Lab Network
 
  To begin, please prepare at least two network devices. These could be set up using [https://containerlab.dev/](https://containerlab.dev/) tool.
  Guide how to set up certain DEMO enviroment, you will find in `containerlab_DEMO`` folder: [contaiberlab_DEMO](contaiberlab_DEMO)
  
- Follow these steps:
-  - Name the devices SWITCH-1 and SWITCH-2. 
-  - Adopt your `inventory.yml` file by changing the IP addresses, as well as username and password acourdingly, My starting configuration is as follows:
-
- ```bash
----
-all:
-  vars: 
-    ansible_connection: network_cli
-    ansible_network_os: eos
-    ansible_become: yes
-    ansible_become_method: enable
-    ansible_user: admin
-    ansible_ssh_pass: admin
-  children:
-    SWITCHES:
-    hosts:
-      SWITCH-1:
-        ansible_host: 172.1.1.1
-      SWITCH-2:
-        ansible_host: 172.1.1.2
- ```
-
-
-
- #### Executing Playbooks
+ ## Project Structure
  
+ - `ansible_journey.docker`: Dockerfile that defines the Docker container with Ansible and Arista EOS galaxy collections.
+ - `change_hostname.yml`: Ansible playbook to change the hostname on an Arista switch.
+ - `add_vlans.yml`: Ansible playbook to add VLANs to an Arista switch.
+ - `revert_changes.yml`: Ansible playbook to revert changes made by the other playbooks.
+ 
+ ## Playbook
+ 
+ 1. **Setting a Hostname**
+    The `change_hostname.yml` playbook sets a new hostname on the Arista switch. It first retrieves the current hostname and stores it for potential reversion.
+ 
+2. **Creating VLANs**
+    The `add_vlans.yml` playbook adds specified VLANs to the switch, demonstrating basic VLAN management.
+ 
+3. **Reverting Changes**
+    The `revert_changes.yml` playbook can revert the hostname change and remove any VLANs that were added, showcasing the ability to rollback configurations.
+
  - **Set MOTD:**
    ```bash
    docker run -it --rm --network host -v /etc/hosts:/etc/hosts -v $(pwd):/ansible ansible_journey ansible-playbook ./playbooks/set_motd.yml -i inventory.yml
    ```
- 
+
  - **Add VLANs:**
    ```bash
    docker run -it --rm --network host -v /etc/hosts:/etc/hosts -v $(pwd):/ansible ansible_journey ansible-playbook ./playbooks/add_vlans.yml -i inventory.yml
@@ -118,26 +109,42 @@ all:
    docker run -it --rm --network host -v /etc/hosts:/etc/hosts -v $(pwd):/ansible ansible_journey ansible-playbook ./playbooks/revert_changes.yml -i inventory.yml
    ```
  
- ## Project Structure
- 
- - `ansible_journey.docker`: Dockerfile that defines the Docker container with Ansible and Arista EOS galaxy collections.
- - `change_hostname.yml`: Ansible playbook to change the hostname on an Arista switch.
- - `add_vlans.yml`: Ansible playbook to add VLANs to an Arista switch.
- - `revert_changes.yml`: Ansible playbook to revert changes made by the other playbooks.
- 
- ## Examples
- 
- 1. **Setting a Hostname**
-    The `change_hostname.yml` playbook sets a new hostname on the Arista switch. It first retrieves the current hostname and stores it for potential reversion.
- 
-2. **Creating VLANs**
-    The `add_vlans.yml` playbook adds specified VLANs to the switch, demonstrating basic VLAN management.
- 
-3. **Reverting Changes**
-    The `revert_changes.yml` playbook can revert the hostname change and remove any VLANs that were added, showcasing the ability to rollback configurations.
- 
 ## Contributing
  
  Contributions to `ansible_journey` are welcome. Please ensure that your contributions adhere to best practices and include appropriate documentation and tests.
 
  #Project Link: [https://github.com/marekplaza/ansible_journey](https://github.com/marekplaza/ansible_journey)
+
+
+
+ #### Sample Playbooks
+ 
+ **Set MOTD:** First one playbook is designed to set up Welcome banner
+
+   **Playbook: set_motd.yml**
+   ```bash
+    ---
+    - name: Set MOTD on Arista Switch
+      hosts: SWITCH-1
+      gather_facts: no
+      tasks:
+      - name: Update MOTD
+        arista.eos.eos_banner:
+          banner: login
+          text: "{{ motd_banner }}"
+          state: present
+   ```
+ - **Execution** 
+
+   ```bash
+   docker run -it --rm --network host -v /etc/hosts:/etc/hosts -v $(pwd):/ansible ansible_journey ansible-playbook ./playbooks/set_motd.yml -i inventory.yml
+
+   PLAY [Set MOTD on Arista Switch] *************************************************************************************************************************************************************************************
+
+   TASK [Update MOTD] ***************************************************************************************************************************************************************************************************
+   changed: [SWITCH-1]
+
+   PLAY RECAP ***********************************************************************************************************************************************************************************************************
+   SWITCH-1                   : ok=1    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+   ```
+
