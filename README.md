@@ -74,7 +74,7 @@ arista.eos                    6.2.1  ✅
  #### Running the Demo Lab Network
 
  To begin, please prepare at least two network devices. These could be set up using [https://containerlab.dev/](https://containerlab.dev/) tool.
- Guide how to set up certain DEMO enviroment, you will find in `containerlab_DEMO`` folder: [contaiberlab_DEMO](contaiberlab_DEMO)
+ Guide how to set up certain DEMO enviroment, you will find in `containerlab_DEMO` folder: [contaiberlab_DEMO](contaiberlab_DEMO)
  
  ## Project Structure
  
@@ -111,7 +111,7 @@ arista.eos                    6.2.1  ✅
  
  #### Sample Executions
  
-In this scenario 
+In this scenario we 
 
    **Playbook: set_motd.yml**
    ```bash
