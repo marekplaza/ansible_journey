@@ -95,27 +95,23 @@ arista.eos                    6.2.1  ✅
  
  1. **Setting a Hostname**
     The `change_hostname.yml` playbook sets a new hostname on the Arista switch. It first retrieves the current hostname and stores it for potential reversion.
+
+    ```bash
+    docker run -it --rm --network host -v /etc/hosts:/etc/hosts -v $(pwd):/ansible ansible_journey ansible-playbook ./playbooks/set_motd.yml -i inventory.yml
+    ```
  
 2. **Creating VLANs**
     The `add_vlans.yml` playbook adds specified VLANs to the switch, demonstrating basic VLAN management.
- 
-3. **Reverting Changes**
-    The `revert_changes.yml` playbook can revert the hostname change and remove any VLANs that were added, showcasing the ability to rollback configurations.
-
- - **Set MOTD:**
-   ```bash
-   docker run -it --rm --network host -v /etc/hosts:/etc/hosts -v $(pwd):/ansible ansible_journey ansible-playbook ./playbooks/set_motd.yml -i inventory.yml
-   ```
-
- - **Add VLANs:**
    ```bash
    docker run -it --rm --network host -v /etc/hosts:/etc/hosts -v $(pwd):/ansible ansible_journey ansible-playbook ./playbooks/add_vlans.yml -i inventory.yml
    ```
  
- - **Revert Changes:**
+3. **Reverting Changes**
+    The `revert_changes.yml` playbook can revert the hostname change and remove any VLANs that were added, showcasing the ability to rollback configurations.
    ```bash
    docker run -it --rm --network host -v /etc/hosts:/etc/hosts -v $(pwd):/ansible ansible_journey ansible-playbook ./playbooks/revert_changes.yml -i inventory.yml
    ```
+
  
  ### Sample Executions
  
