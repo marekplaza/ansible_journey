@@ -115,38 +115,57 @@ arista.eos                    6.2.1  ✅
  
  ### Sample Executions
  
-In this scenario we 
+In this scenario, we will add to SWITCH-1 a list of VLANs resulting from the sum of VLANs defined in host_vars and the common part of group_vars. Please take a closer look on the files including mentioned items:
 
-   **Playbook: set_motd.yml**
+ - #### group_vars (all.yml):
+ ```bash
+ vlans:
+  - id: 10
+    name: "VLAN10__by_group_vars"
+  - id: 20
+    name: "VLAN20__by_group_vars"
+ ```
+
+ - #### host_vars (SWITCH-1.yml):
+ ```bash
+vlans:
+  - id: 31
+    name: "Admin_VLAN__by_host_vars"
+  - id: 41
+    name: "IoT_VLAN__by_host_vars"
+ ```
+Playbook `add_vlans.yml`, based on `eos_vlan` as a part of the eos collection and it presents itself as below:
    ```bash
-    ---
-    - name: Set MOTD on Arista Switch
-      hosts: SWITCH-1
-      gather_facts: no
-      tasks:
-      - name: Update MOTD
-        arista.eos.eos_banner:
-          banner: login
-          text: "{{ motd_banner }}"
-          state: present
+   ---
+     - hosts: SWITCH-1
+       gather_facts: no
+       tasks:
+       - name: Add VLANs
+         eos_vlans:
+           config:
+           - vlan_id: "{{ item.id }}"
+             name: "{{ item.name }}"
+           state: merged
+         with_items: 
+           - "{{ vlans }}"
    ```
 
 
    ```bash
-   docker run -it --rm --network host -v /etc/hosts:/etc/hosts -v $(pwd):/ansible ansible_journey ansible-playbook ./playbooks/set_motd.yml -i inventory.yml
+   ❯ cd ansible
+❯ docker run -it --rm --network host -v /etc/hosts:/etc/hosts -v $(pwd):/ansible ansible_journey ansible-playbook ./playbooks/add_vlans.yml -i inventory.yml -v
+Using /ansible/ansible.cfg as config file
 
-   PLAY [Set MOTD on Arista Switch] *************************************************************************************************************************************************************************************
+PLAY [SWITCH-1] ******************************************************************************************************************************************************************************************************
 
-   TASK [Update MOTD] ***************************************************************************************************************************************************************************************************
-   changed: [SWITCH-1]
+TASK [Add VLANs] *****************************************************************************************************************************************************************************************************
+ok: [SWITCH-1] => (item={'id': 31, 'name': 'Admin_VLAN__by_host_vars'}) => {"ansible_loop_var": "item", "before": [{"name": "VLAN10bygroupvars", "state": "active", "vlan_id": 10}, {"name": "VLAN20_by_group_vars", "state": "active", "vlan_id": 20}, {"name": "Admin_VLAN__by_host_vars", "state": "active", "vlan_id": 31}, {"name": "IoT_VLAN__by_host_vars", "state": "active", "vlan_id": 41}], "changed": false, "commands": [], "item": {"id": 31, "name": "Admin_VLAN__by_host_vars"}}
+ok: [SWITCH-1] => (item={'id': 41, 'name': 'IoT_VLAN__by_host_vars'}) => {"ansible_loop_var": "item", "before": [{"name": "VLAN10bygroupvars", "state": "active", "vlan_id": 10}, {"name": "VLAN20_by_group_vars", "state": "active", "vlan_id": 20}, {"name": "Admin_VLAN__by_host_vars", "state": "active", "vlan_id": 31}, {"name": "IoT_VLAN__by_host_vars", "state": "active", "vlan_id": 41}], "changed": false, "commands": [], "item": {"id": 41, "name": "IoT_VLAN__by_host_vars"}}
 
-   PLAY RECAP ***********************************************************************************************************************************************************************************************************
-   SWITCH-1                   : ok=1    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+PLAY RECAP ***********************************************************************************************************************************************************************************************************
+SWITCH-1                   : ok=1    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
    ```
 
 ## Contributing
  
  Contributions to `ansible_journey` are welcome. Please ensure that your contributions adhere to best practices and include appropriate documentation and tests.
-
- #### Project Link: [https://github.com/marekplaza/ansible_journey](https://github.com/marekplaza/ansible_journey)
-
