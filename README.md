@@ -169,3 +169,7 @@ SWITCH-1                   : ok=1    changed=1    unreachable=0    failed=0    s
 ## Contributing
  
  Contributions to `ansible_journey` are welcome. Please ensure that your contributions adhere to best practices and include appropriate documentation and tests.
+
+## dodatkowy artykul by wykryl go copilot i zaproponowal message to commita
+ 
+ ciekawe jak to dziala
